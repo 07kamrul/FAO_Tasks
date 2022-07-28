@@ -46,13 +46,13 @@ namespace FAO_Tasks
                 }
 
 
-/*                Dictionary<string, DataCases> casesDictionary = dataCases.ToDictionary(x => x.location);
+                Dictionary<string, List<DataCases>> casesDictionary = dataCases.GroupBy(x => x.location).ToDictionary(x => x.Key, x => x.ToList());
                 int total = dataCases.Count;
                 Console.WriteLine("Number of Locations: " + total);
                 foreach (var item in casesDictionary.Keys)
                 {
 
-                }*/
+                }
             }
             Console.WriteLine(dataCases.Count());
 
