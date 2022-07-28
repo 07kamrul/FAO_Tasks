@@ -4,6 +4,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 
 namespace FAO_Tasks
 {
@@ -14,10 +15,10 @@ namespace FAO_Tasks
             /*string path1 = @"D:\Practice\ASA\FAO_Tasks\FAO_Tasks\data\data_cases_1.csv";
             string path2 = @"D:\Practice\ASA\FAO_Tasks\FAO_Tasks\data\data_cases_2.csv";
 */
-            string path1 = @"F:\Interview\FAO_Tasks\data\data_cases_1.csv";
-            string path2 = @"F:\Interview\FAO_Tasks\data\data_cases_2.csv";
+            string path1 = @"F:\Interview\FAO_Tasks\InputData\data_cases_1.csv";
+            //string path2 = @"F:\Interview\FAO_Tasks\InputData\data_cases_2.csv";
 
-            string[] paths = new string[] { path1, path2 };
+            string[] paths = new string[] { path1 };
 
             List <DataCases> dataCases = new List<DataCases>();
 
@@ -46,14 +47,35 @@ namespace FAO_Tasks
                 }
             }
 
-            Dictionary<string, List<DataCases>> casesDictionary = dataCases.GroupBy(x => x.location).ToDictionary(x => x.Key, x => x.ToList());
-      
-            foreach (var item in casesDictionary)
+
+            var location_name = dataCases.Select(x => new { location = x.location }).GroupBy(g => g.location).ToList();
+
+            IDictionary<string, object> jsonDictionary = new Dictionary<string, object>();
+            jsonDictionary.Add(new KeyValuePair<string, object>("total number of reported cases is" , dataCases.Sum(x => x.total_number_cases)));
+
+            IDictionary<string, int> d = new Dictionary<string, int>();
+
+
+            foreach (var ln in location_name.OrderBy(x=> x.Key))
             {
-                Console.WriteLine("Number of Locations: " + item.Key+" : "+item.Value.Count());
+                string key = ln.Key;
+                int value = dataCases.Where(x => x.location == ln.Key).Sum(a => a.number_mortality);
+
+                d.Add(new KeyValuePair<string, int>(ln.Key, value));
 
             }
 
+            Console.WriteLine("total number of reported cases is: "+dataCases.Sum(x => x.total_number_cases));
+            foreach (KeyValuePair<string, int> ele in d)
+            {
+                Console.WriteLine("{0} : {1}", ele.Key, ele.Value);
+            }
+
+            jsonDictionary.Add(new KeyValuePair<string, object>("total number of deaths reported at each location", d));
+
+
+            string json = JsonSerializer.Serialize(jsonDictionary);
+            File.WriteAllText(@"F:\Interview\FAO_Tasks\OutputData\indicators_1.json", json);
         }
     }
 
