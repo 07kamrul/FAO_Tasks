@@ -11,9 +11,12 @@ namespace FAO_Tasks
     {
         static void Main(string[] args)
         {
-            string path1 = @"D:\Practice\ASA\FAO_Tasks\FAO_Tasks\data\data_cases_1.csv";
+            /*string path1 = @"D:\Practice\ASA\FAO_Tasks\FAO_Tasks\data\data_cases_1.csv";
             string path2 = @"D:\Practice\ASA\FAO_Tasks\FAO_Tasks\data\data_cases_2.csv";
-            
+*/
+            string path1 = @"F:\Interview\FAO_Tasks\data\data_cases_1.csv";
+            string path2 = @"F:\Interview\FAO_Tasks\data\data_cases_2.csv";
+
             string[] paths = new string[] { path1, path2 };
 
             List <DataCases> dataCases = new List<DataCases>();
@@ -24,14 +27,12 @@ namespace FAO_Tasks
             foreach (var path in paths) 
             {
                 rows = File.ReadAllLines(path);
-                int i = 1;
-                DataCases dc = new DataCases();
-                while (i < rows.Length)
+                
+                for (int i = 1; i < rows.Length; i++)
                 {
+                    DataCases dc = new DataCases();
+
                     columns = rows[i].Split(',');
-                    if (columns.Length > 0)
-                    {
-                    }
                     dc.uuid = Encoding.Unicode.GetBytes(columns[0]);
                     dc.datetime = Convert.ToDateTime(columns[1]);
                     dc.species = columns[2];
@@ -41,21 +42,17 @@ namespace FAO_Tasks
                     dc.total_number_cases = Convert.ToInt32(columns[6]);
                     dc.location = columns[7];
 
-                    i++;
                     dataCases.Add(dc);
                 }
-
-
-                Dictionary<string, List<DataCases>> casesDictionary = dataCases.GroupBy(x => x.location).ToDictionary(x => x.Key, x => x.ToList());
-                int total = dataCases.Count;
-                Console.WriteLine("Number of Locations: " + total);
-                foreach (var item in casesDictionary.Keys)
-                {
-
-                }
             }
-            Console.WriteLine(dataCases.Count());
 
+            Dictionary<string, List<DataCases>> casesDictionary = dataCases.GroupBy(x => x.location).ToDictionary(x => x.Key, x => x.ToList());
+      
+            foreach (var item in casesDictionary)
+            {
+                Console.WriteLine("Number of Locations: " + item.Key+" : "+item.Value.Count());
+
+            }
 
         }
     }
