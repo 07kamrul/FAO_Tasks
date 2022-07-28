@@ -5,6 +5,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 
 namespace FAO_Tasks
 {
@@ -21,7 +22,8 @@ namespace FAO_Tasks
 
             string path2 = @"F:\Interview\FAO_Tasks\InputData\data_cases_2.csv";
 
-            Console.WriteLine("Enter your needed indicator: ");
+            Console.WriteLine("\n\nEnter your needed indicator: ");
+
             int indicators = int.Parse(Console.ReadLine());
 
             switch (indicators)
@@ -37,6 +39,9 @@ namespace FAO_Tasks
 
                     break;
             }
+
+
+
             
         }
     }

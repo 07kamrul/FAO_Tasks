@@ -1,0 +1,10 @@
+{
+ "total number of reported cases is": 1170,
+ "total number of deaths reported at each location": {
+  "Health Centre A": 81,
+  "Health Centre B": 67,
+  "Village 1": 114,
+  "Village 2": 107,
+  "Village 3": 107
+ }
+}

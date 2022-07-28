@@ -1,0 +1,15 @@
+{
+ "Average number of sick cats reported in reports from villages up to two decimal points": "3.54",
+ "total number of deaths from each disease": {
+  "Babesiosis": 39,
+  "Brucellosis": 53,
+  "Ephemeral Fever": 65,
+  "Gangrene": 71,
+  "Infectious Coryza": 46,
+  "Mycoplasmosis": 43,
+  "Necrotic Enteritis": 60,
+  "Tape Worm": 23,
+  "Tetanus": 44,
+  "Worm Infestation": 32
+ }
+}
