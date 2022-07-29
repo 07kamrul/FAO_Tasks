@@ -21,6 +21,7 @@ namespace FAO_Tasks
             string path1 = @"F:\Interview\FAO_Tasks\InputData\data_cases_1.csv";
 
             string path2 = @"F:\Interview\FAO_Tasks\InputData\data_cases_2.csv";
+            string diseasePath = @"F:\Interview\FAO_Tasks\InputData\disease_list.csv";
 
             Console.WriteLine("\n\nEnter your needed indicator: ");
 
@@ -33,6 +34,12 @@ namespace FAO_Tasks
                     FirstIndicators firstIndicators = new FirstIndicators();
                     firstIndicators.FirstIndicator(path1);
                     break;
+                
+                case 2:
+                    Console.WriteLine("First Indicators value are ready.");
+                    AdvancedIndicators advancedIndicators = new AdvancedIndicators();
+                    advancedIndicators.AdvancedIndicator(path1, diseasePath);
+                    break;
 
                 default:
                     Console.WriteLine(String.Format("Unknown indicators: {0}", indicators));
@@ -40,9 +47,6 @@ namespace FAO_Tasks
                     break;
             }
 
-
-
-            
         }
     }
 }
