@@ -18,14 +18,13 @@ namespace FAO_Tasks
             Console.WriteLine("Press 2 for Advanced Indicators");
             Console.WriteLine("Press 3 for Corrupted Indicators");
 
-            string path1 = @"F:\Interview\FAO_Tasks\InputData\data_cases_1.csv";
+            string path1 = @"D:\Practice\ASA\FAO_Tasks\FAO_Tasks\InputData\data_cases_1.csv";
+            
+            string path2 = @"D:\Practice\ASA\FAO_Tasks\FAO_Tasks\InputData\data_cases_corrupted.csv";
 
-            string path2 = @"F:\Interview\FAO_Tasks\InputData\data_cases_corrupted.csv";
-
-            string diseasePath = @"F:\Interview\FAO_Tasks\InputData\disease_list.csv";
+            string diseasePath = @"D:\Practice\ASA\FAO_Tasks\FAO_Tasks\InputData\disease_list.csv";
 
             Console.WriteLine("\n\nEnter your needed indicator: ");
-
             int indicators = int.Parse(Console.ReadLine());
 
             switch (indicators)
@@ -33,7 +32,7 @@ namespace FAO_Tasks
                 case 1:
                     Console.WriteLine("First Indicators value are ready.");
                     FirstIndicators firstIndicators = new FirstIndicators();
-                    firstIndicators.FirstIndicator(path1);
+                    firstIndicators.FirstIndicator(path1, indicators);
                     break;
                 
                 case 2:
@@ -45,7 +44,7 @@ namespace FAO_Tasks
                 case 3:
                     Console.WriteLine("First Corrupted value are ready.");
                     CorruptedIndicators corruptedIndicators = new CorruptedIndicators();
-                    corruptedIndicators.CorruptedIndicator(path2);
+                    corruptedIndicators.CorruptedIndicator(path2, indicators);
                     break;
                 default:
                     Console.WriteLine(String.Format("Unknown indicators: {0}", indicators));

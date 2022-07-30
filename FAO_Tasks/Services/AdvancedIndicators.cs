@@ -13,7 +13,6 @@ namespace FAO_Tasks.Services
     {
         public void AdvancedIndicator(string path, string diseasePath)
         {
-            //data case 02
             List<DataCases> dataCases = new List<DataCases>();
 
             string[] rows;
@@ -101,7 +100,7 @@ namespace FAO_Tasks.Services
             indicators.Add(new KeyValuePair<string, object>("total number of deaths from each disease", outputDieases));
 
             string jsonIndicators = JsonSerializer.Serialize(indicators);
-            File.WriteAllText(@"F:\Interview\FAO_Tasks\OutputData\indicators_advanced.json", jsonIndicators);
+            File.WriteAllText(@"D:\Practice\ASA\FAO_Tasks\FAO_Tasks\OutputData\indicators_advanced.json", jsonIndicators);
         }
     }
 }

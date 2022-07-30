@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FAO_Tasks.Models
 {
-    class DataCases
+    public class DataCases
     {
         public byte[] uuid { get; set; }
         public DateTime datetime { get; set; }
