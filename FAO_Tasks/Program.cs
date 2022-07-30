@@ -18,11 +18,10 @@ namespace FAO_Tasks
             Console.WriteLine("Press 2 for Advanced Indicators");
             Console.WriteLine("Press 3 for Corrupted Indicators");
 
-            string path1 = @"D:\Practice\ASA\FAO_Tasks\FAO_Tasks\InputData\data_cases_1.csv";
-            
-            string path2 = @"D:\Practice\ASA\FAO_Tasks\FAO_Tasks\InputData\data_cases_corrupted.csv";
+            string codeBase = System.Reflection.Assembly.GetExecutingAssembly().CodeBase;
+            string path = System.IO.Path.GetDirectoryName(codeBase).Replace("\\bin\\Debug\\net5.0", "");
+            string rootPath = path.Replace("file:\\", "");            
 
-            string diseasePath = @"D:\Practice\ASA\FAO_Tasks\FAO_Tasks\InputData\disease_list.csv";
 
             Console.WriteLine("\n\nEnter your needed indicator: ");
             int indicators = int.Parse(Console.ReadLine());
@@ -32,19 +31,19 @@ namespace FAO_Tasks
                 case 1:
                     Console.WriteLine("First Indicators value are ready.");
                     FirstIndicators firstIndicators = new FirstIndicators();
-                    firstIndicators.FirstIndicator(path1, indicators);
+                    firstIndicators.FirstIndicator(rootPath, indicators);
                     break;
                 
                 case 2:
                     Console.WriteLine("Advanced Indicators value are ready.");
                     AdvancedIndicators advancedIndicators = new AdvancedIndicators();
-                    advancedIndicators.AdvancedIndicator(path1, diseasePath);
+                    advancedIndicators.AdvancedIndicator(rootPath);
                     break;
 
                 case 3:
                     Console.WriteLine("First Corrupted value are ready.");
                     CorruptedIndicators corruptedIndicators = new CorruptedIndicators();
-                    corruptedIndicators.CorruptedIndicator(path2, indicators);
+                    corruptedIndicators.CorruptedIndicator(rootPath, indicators);
                     break;
                 default:
                     Console.WriteLine(String.Format("Unknown indicators: {0}", indicators));

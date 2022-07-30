@@ -11,12 +11,13 @@ namespace FAO_Tasks.Services
 {
     public class CorruptedIndicators
     {
-        public void CorruptedIndicator(string path, int indicators)
+        public void CorruptedIndicator(string rootPath, int indicators)
         {
             List<DataCases> dataCases = new List<DataCases>();
 
             string[] rows;
             string[] corruptedColumns;
+            string path = rootPath + @"\InputData\data_cases_corrupted.csv";
 
             rows = File.ReadAllLines(path);
 
@@ -66,7 +67,7 @@ namespace FAO_Tasks.Services
                 dataCases.Add(dc);
 
                 CommonService commonService = new CommonService();
-                commonService.JsonCommonService(dataCases, indicators);
+                commonService.JsonCommonService(dataCases, indicators, rootPath);
             }
         }
     }

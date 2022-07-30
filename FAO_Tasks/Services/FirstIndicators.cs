@@ -10,13 +10,15 @@ namespace FAO_Tasks.Services
 {
     class FirstIndicators
     {
-        public void FirstIndicator(string path, int indicators)
+        public void FirstIndicator(string rootPath, int indicators)
         {
 
             List<DataCases> dataCases = new List<DataCases>();
 
             string[] rows;
             string[] columns;
+            string path = rootPath + @"\InputData\data_cases_1.csv";
+
 
             rows = File.ReadAllLines(path);
 
@@ -38,7 +40,7 @@ namespace FAO_Tasks.Services
             }
 
             CommonService commonService = new CommonService();
-            commonService.JsonCommonService(dataCases, indicators);
+            commonService.JsonCommonService(dataCases, indicators, rootPath);
         }
     }
 }

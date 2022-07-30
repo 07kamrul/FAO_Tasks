@@ -11,12 +11,13 @@ namespace FAO_Tasks.Services
 {
     class AdvancedIndicators
     {
-        public void AdvancedIndicator(string path, string diseasePath)
+        public void AdvancedIndicator(string rootPath)
         {
             List<DataCases> dataCases = new List<DataCases>();
 
             string[] rows;
             string[] columns;
+            string path = rootPath + @"\InputData\data_cases_1.csv";
 
             rows = File.ReadAllLines(path);
 
@@ -42,7 +43,10 @@ namespace FAO_Tasks.Services
 
             //disease list
             List<Disease> diseases = new List<Disease>();
+            string diseasePath = rootPath + @"\InputData\disease_list.csv";
+
             rows = File.ReadAllLines(diseasePath);
+
             for (int i = 1; i < rows.Length; i++)
             {
                 Disease disease = new Disease();

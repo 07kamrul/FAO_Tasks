@@ -12,7 +12,7 @@ namespace FAO_Tasks.Services
     public class CommonService
     {
        
-        public void JsonCommonService(List<DataCases> dataCases, int indicator)
+        public void JsonCommonService(List<DataCases> dataCases, int indicator, string rootPath)
         {
             var location_name = dataCases.Select(x => new { location = x.location }).GroupBy(g => g.location).ToList();
 
@@ -47,11 +47,11 @@ namespace FAO_Tasks.Services
 
             if (indicator == 1)
             {
-                File.WriteAllText(@"D:\Practice\ASA\FAO_Tasks\FAO_Tasks\OutputData\indicators_1.json", jsonIndicators);
+                File.WriteAllText(rootPath + @"\OutputData\indicators_1.json", jsonIndicators);
             }
             else
             {
-                File.WriteAllText(@"D:\Practice\ASA\FAO_Tasks\FAO_Tasks\OutputData\indicators_corrupted.json", jsonIndicators);
+                File.WriteAllText(rootPath + @"\OutputData\indicators_corrupted.json", jsonIndicators);
             }
         }
     }
