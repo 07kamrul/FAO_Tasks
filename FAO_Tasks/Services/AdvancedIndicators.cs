@@ -104,7 +104,7 @@ namespace FAO_Tasks.Services
             indicators.Add(new KeyValuePair<string, object>("total number of deaths from each disease", outputDieases));
 
             string jsonIndicators = JsonSerializer.Serialize(indicators);
-            File.WriteAllText(@"D:\Practice\ASA\FAO_Tasks\FAO_Tasks\OutputData\indicators_advanced.json", jsonIndicators);
+            File.WriteAllText(rootPath + @"\OutputData\indicators_advanced.json", jsonIndicators);
         }
     }
 }
